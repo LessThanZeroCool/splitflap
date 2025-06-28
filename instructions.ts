@@ -38,7 +38,7 @@ export type Instruction = {
 export const instructions: Instruction[] = [
   {
     type: 'static',
-    content: '\n\nWELCOME\nTO THE JUNGLE.  Meow.'
+    content: '\n\n WELCOME \n TO THE JUNGLE.  Meow.'
   },
   {
     type: 'ai',
