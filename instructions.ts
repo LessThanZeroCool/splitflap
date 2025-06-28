@@ -38,7 +38,7 @@ export type Instruction = {
 export const instructions: Instruction[] = [
   {
     type: 'static',
-    content: '\n\nWELCOME\nTO THE JUNGLE.  Meow.'
+    content: '\n\nWELCOME\nTO THE JUNGLE. Meow.'
   },
   {
     type: 'ai',
@@ -54,6 +54,6 @@ export const instructions: Instruction[] = [
   },
   {
     type: 'ai',
-    content: 'What are the top headlines in tech news right now?'
+    content: 'What are the top headlines in the news right now?'
   }
 ];
