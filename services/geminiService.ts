@@ -1,16 +1,20 @@
-
 import { GoogleGenAI } from "@google/genai";
 import { BOARD_ROWS, BOARD_COLS } from '../constants';
 
-const API_KEY = process.env.API_KEY;
+let ai: GoogleGenAI;
 
-if (!API_KEY) {
-  throw new Error("API_KEY environment variable not set.");
+export function initializeAi(apiKey: string) {
+  if (!apiKey) {
+    throw new Error("API key is not provided for Gemini initialization.");
+  }
+  ai = new GoogleGenAI({ apiKey });
 }
 
-const ai = new GoogleGenAI({ apiKey: API_KEY });
-
 export async function generateVestaboardMessage(query: string): Promise<string> {
+  if (!ai) {
+    throw new Error("Gemini service has not been initialized. Call initializeAi() first.");
+  }
+  
   const systemInstruction = `
     You are an assistant that formats answers for a Vestaboard, which is a split-flap display.
     The board has dimensions of ${BOARD_ROWS} rows and ${BOARD_COLS} characters per row.

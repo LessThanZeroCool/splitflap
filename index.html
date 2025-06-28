@@ -1,71 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gemini Vestaboard Embed</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap');
-      body {
-        font-family: 'Roboto Mono', monospace;
-      }
-    </style>
-  <script type="importmap">
+<script type="importmap">
 {
   "imports": {
+    "@google/genai": "https://esm.sh/@google/genai@^1.5.1",
     "react": "https://esm.sh/react@^19.1.0",
     "react-dom/": "https://esm.sh/react-dom@^19.1.0/",
-    "react/": "https://esm.sh/react@^19.1.0/",
-    "@google/genai": "https://esm.sh/@google/genai@^1.5.1"
+    "react/": "https://esm.sh/react@^19.1.0/"
   }
 }
 </script>
-</head>
-  <body class="bg-white">
-
-    <!-- 
-      STEP 1: Place this div where you want the Vestaboard to appear on your website.
-    -->
-    <div id="vestaboard-container"></div>
-    
-    <!-- 
-      STEP 2: Configure your board here.
-    -->
-    <script>
-      /**
-       * IMPORTANT: Add your Gemini API Key here.
-       * For security, it's best to configure access controls for your API key in the
-       * Google Cloud console to restrict its usage to your website's domain.
-       */
-      window.vestaboardApiKey = "YOUR_GEMINI_API_KEY_HERE";
-
-      /**
-       * Define the messages for the Vestaboard to display.
-       * It will cycle through this list.
-       *
-       * type: 'static' -> A fixed message.
-       * type: 'ai' -> A query for the AI to answer.
-       *
-       * Use '\n' to create new lines or to push text down from the top.
-       */
-      window.vestaboardInstructions = [
-        { type: 'static', content: '\n\nAMANDA J ALONSO\n\nDESIGNER\nDEVELOPER\nCREATOR' },
-        { type: 'ai', content: 'Tell me a short, fun fact about web design.' },
-        { type: 'static', content: '\n\nWELCOME\nTO MY SITE' },
-        { type: 'ai', content: 'What is the current weather in Miami, FL?' },
-      ];
-    </script>
-    
-    <!-- 
-      STEP 3: This script loads your Vestaboard.
-      The 'src' attribute now points to your public GitHub Pages repository.
-    -->
-    <script 
-      type="module" 
-      src="https://lessthanzerocool.github.io/splitflap/index.tsx"
-    ></script>
-    
-  </body>
-</html>
+<link rel="stylesheet" href="/index.css">
+<script type="module" src="/index.tsx"></script>
