@@ -1,0 +1,5 @@
+{
+  "name": "Gemini Vestaboard Simulator",
+  "description": "A web-based simulator of a split-flap (Vestaboard) display. Users can enter their own message or get AI-generated quotes from Gemini to display with a satisfying flipping animation.",
+  "requestFramePermissions": []
+}
