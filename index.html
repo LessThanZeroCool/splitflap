@@ -1,12 +1,63 @@
-<script type="importmap">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gemini Vestaboard Embed</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap');
+      body {
+        font-family: 'Roboto Mono', monospace;
+      }
+    </style>
+  <script type="importmap">
 {
   "imports": {
-    "@google/genai": "https://esm.sh/@google/genai@^1.5.1",
     "react": "https://esm.sh/react@^19.1.0",
+    "react-dom/client": "https://esm.sh/react-dom@^19.1.0/client",
     "react-dom/": "https://esm.sh/react-dom@^19.1.0/",
     "react/": "https://esm.sh/react@^19.1.0/"
   }
 }
 </script>
 <link rel="stylesheet" href="/index.css">
-<script type="module" src="/index.tsx"></script>
+</head>
+  <body class="bg-white">
+
+    <!-- 
+      STEP 1: Place this div where you want the Vestaboard to appear on your website.
+    -->
+    <div id="vestaboard-container" class="flex justify-center items-center min-h-screen"></div>
+    
+    <!-- 
+      STEP 2: Configure your messages here.
+    -->
+    <script>
+      /**
+       * Define the messages for the Vestaboard to display.
+       * It will cycle through this list.
+       *
+       * The 'type' must be 'static'.
+       * Use '\n' to create new lines or to push text down from the top.
+       */
+      window.vestaboardInstructions = [
+        { type: 'static', content: '\n\nAMANDA J ALONSO\n\nDESIGNER\nDEVELOPER\nCREATOR' },
+        { type: 'static', content: '\n\nWELCOME\nTO MY SITE' },
+        { type: 'static', content: '\n\nEXPLORE\nMY WORK' },
+      ];
+    </script>
+    
+    <!-- 
+      STEP 3: This script loads your Vestaboard.
+      The version number at the end (?v=8) is important to prevent caching issues.
+    -->
+    <script 
+      type="module" 
+      src="https://esm.sh/gh/lessthanzerocool/splitflap@main/index.tsx?v=8"
+    ></script>
+    
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>

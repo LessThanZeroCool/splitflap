@@ -1,5 +1,5 @@
 export type Instruction = {
-  type: 'static' | 'ai';
+  type: 'static';
   content: string;
 };
 
@@ -19,9 +19,6 @@ export type Instruction = {
  *     - Displays a fixed message.
  *     - `content` should be the message string you want to show.
  *
- * 2.  `type: 'ai'`
- *     - Sends a query to the Gemini AI to get a dynamic message.
- *     - `content` should be the question you want to ask the AI.
  */
 export const instructions: Instruction[] = [
   {
@@ -29,7 +26,7 @@ export const instructions: Instruction[] = [
     content: '\n\nTHIS IS A DEMO\n\nCONFIGURE MESSAGES\n\nIN YOUR WEBPAGE'
   },
   {
-    type: 'ai',
-    content: 'Tell me a short, inspiring quote.'
+    type: 'static',
+    content: 'HELLO WORLD'
   },
 ];

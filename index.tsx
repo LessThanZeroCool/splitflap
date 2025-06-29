@@ -1,31 +1,45 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import { initializeAi } from './services/geminiService';
 import { Instruction } from './instructions';
 
 // Extend the Window interface to avoid TypeScript errors
 declare global {
   interface Window {
-    vestaboardApiKey?: string;
     vestaboardInstructions?: Instruction[];
   }
 }
 
-const container = document.getElementById('vestaboard-container');
-const apiKey = window.vestaboardApiKey;
-const instructions = window.vestaboardInstructions;
+// Wait for the DOM to be fully loaded before running the script
+window.addEventListener('DOMContentLoaded', () => {
+  const container = document.getElementById('vestaboard-container');
 
-if (!container) {
-  console.error("Vestaboard Error: Could not find container element with id 'vestaboard-container'.");
-} else if (!apiKey) {
-  console.error("Vestaboard Error: API key is missing. Please set 'window.vestaboardApiKey'.");
-} else if (!instructions || instructions.length === 0) {
-  console.error("Vestaboard Error: Instructions are missing. Please set 'window.vestaboardInstructions'.");
-} else {
+  // Helper function to display errors directly on the page
+  const showError = (message: string) => {
+    if (container) {
+      container.innerHTML = `<div style="max-width: 600px; margin: 20px; padding: 20px; border: 1px solid #ff4d4d; background-color: #fff2f2; color: #cc0000; font-family: sans-serif; border-radius: 8px;">
+        <strong>Vestaboard Error:</strong> ${message}
+      </div>`;
+    }
+    console.error(`Vestaboard Error: ${message}`);
+  };
+
+  if (!container) {
+    // This should not happen with DOMContentLoaded, but it's a good safeguard.
+    console.error("Vestaboard Error: Could not find container element with id 'vestaboard-container'.");
+    return;
+  }
+  
+  const instructions = window.vestaboardInstructions;
+  
+  if (!instructions || instructions.length === 0) {
+    showError("Instructions are missing. Please set 'window.vestaboardInstructions' in your HTML script tag.");
+    return;
+  }
+  
   try {
-    // Initialize the Gemini AI service with the key provided
-    initializeAi(apiKey);
+    // API Key is no longer needed on the client.
+    // The Gemini AI service is initialized on the secure proxy server.
     
     const root = ReactDOM.createRoot(container);
     root.render(
@@ -34,7 +48,7 @@ if (!container) {
       </React.StrictMode>
     );
   } catch (e) {
-    console.error("Vestaboard Error: Failed to initialize the application.", e);
-    container.innerHTML = `<p style="color: red; font-family: sans-serif;">Error loading Vestaboard. See console for details.</p>`
+    const errorMessage = e instanceof Error ? e.message : 'An unknown error occurred.';
+    showError(`Failed to initialize the application. ${errorMessage}`);
   }
-}
+});
